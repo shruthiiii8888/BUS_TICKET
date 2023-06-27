@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTS</title>
+    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .icon {
+            position: fixed;
+            top: 13%;
+            right: 30px;
+            transform: translateY(-40%);
+            width: 35px;
+            height: 35px;
+            background-color: #f1ecec;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .icon-size{
+            font-size: 30px;
+        }
+        .ball {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+    transform: translate(-50%, -50%);
+    width: 270px;
+    height: 270px;
+    background-color: rgb(240, 234, 234);
+    border-radius: 1%;
+    animation: ballAnimation 15s infinite;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 50px;
+}
+
+        
+        @keyframes ballAnimation {
+            0% {
+                top: 50%;
+                left: 5%;
+            }
+            50% {
+                top: 50%;
+                left: 90%;
+            }
+            100% {
+                top: 50%;
+                left: 5%;
+            }
+        }
+        .list-container {
+            position: fixed;
+            top: 13%;
+            right: 60px;
+            transform: translateY(-50%);
+            background-color: #615e5e;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(247, 244, 244, 0.2);
+            display: none;
+            z-index: 1;
+        }
+        
+        .list-container ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .list-container ul li {
+            margin-bottom: 5px;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: hsl(218, 41%, 15%);
+            background-image: radial-gradient(650px circle at 0% 0%,
+                hsl(218, 41%, 35%) 15%,
+                hsl(218, 41%, 30%) 35%,
+                hsl(218, 41%, 20%) 75%,
+                hsl(218, 41%, 19%) 80%,
+                transparent 100%),
+            radial-gradient(1250px circle at 100% 100%,
+                hsl(218, 41%, 45%) 15%,
+                hsl(218, 41%, 30%) 35%,
+                hsl(218, 41%, 20%) 75%,
+                hsl(218, 41%, 19%) 80%,
+                transparent 100%);
+        }
+        .background {
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .blur {
+            backdrop-filter: blur(1px);
+            height: 100vh;
+            width: 100%;
+        }
+
+        .blur ul {
+            display: inline-flex;
+            list-style: none;
+            text-align: right;
+            text-align: center;
+            width: 100%;
+            height: 80px;
+            margin: 1px;
+        }
+
+        .blur ul li {
+            width: 90px;
+            float: right;
+            margin: 40px;
+            padding: 0.2px;
+            color: rgb(247, 244, 244);
+        }
+
+        li:hover {
+            background: rgb(7, 7, 7);
+            transform: scale(1.6);
+        }
+
+        a {
+            color: rgb(235, 232, 227);
+            text-decoration: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(233, 238, 243);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="blur">
+            <h1>WELCOME</h1>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="http://localhost:30/tickets/open">Open Tickets</a></li>
+                <li><a href="http://localhost:30/tickets/closed">Closed Tickets</a></li>
+                <li><a href="http://localhost:30/tickets">All Tickets</a></li>
+                <li><a href="http://localhost:30/tickets/:seatNumber">seatNumber</a></li>
+                <li><a id="about-link" href="http://localhost:30/tickets/book">Book</a></li>
+                <li><a href="http://localhost:30/personalinfo">More</a></li>
+            </ul>
+            <div id="about-form" class="about-form">
+                <form id="book-form" action="element2.ejs">
+                    
+            </div>
+        </div>
+    </div>
+    <div class="icon" id="list-icon">
+        <i class="fa fa-home icon-size"></i>
+    </div>
+    <div class="list-container" id="list-container">
+        <ul>
+            <li><a href="/element1">PROFILE</a></li>
+            <li><a href="/element2">INFORMATION</a></li>
+            <li><a href="/element3">BOOKING DETAILS</a></li>
+            <li><a href="/element4">ABOUT</a></li>
+        </ul>
+    </div>
+    <div class="ball">
+    <div class="ball" style="background-color: rgb(222, 222, 233);">WELCOME TO DTS BUS</div>
+    <div class="ball" style="background-color: rgb(223, 231, 223);">WELCOME TO DTS BUS</div>
+    </div>
+    <script>
+        var icon = document.getElementById('list-icon');
+        var listContainer = document.getElementById('list-container');
+
+        icon.addEventListener('click', function() {
+            if (listContainer.style.display === 'none') {
+                listContainer.style.display = 'block';
+            } else {
+                listContainer.style.display = 'none';
+            }
+        });
+
+        document.getElementById('about-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            window.location.href = '/element'; // Redirect to the desired page
+        });
+
+        
+</script>
+
+</body>
+</html>
